@@ -1,5 +1,8 @@
 package wgl.example.com.emtask1;
 //http://mainia.tistory.com/1093 참고
+//System.getProperty 관련
+//http://sunphiz.me/wp/archives/1688
+//http://forum.falinux.com/zbxe/index.php?document_srl=571152&mid=lecture_tip
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,31 +22,41 @@ public class OSInfoActivity extends AppCompatActivity {
         TextView SYSinfo = (TextView) findViewById(R.id.ostext);
         SYSinfo.setText(ReadSYSinfo());
     }
-    //System.getProperty() 이용, 터미널에서 시스템 명령어를 실행하는 것과 같은 효과,
-    //getProperty() 만든 함수, 텍스트뷰에 출력할 text로 만듬
+
+
+    //시스템 정보 출력
+    //getProperty() 만든 함수
+    //텍스트뷰에 출력할 text로 만듬
     private static StringBuffer SYSinfoBuffer;// 저장버퍼
 
     private String ReadSYSinfo()
     {
         SYSinfoBuffer = new StringBuffer();
 
-        getProperty("os.name", "os.name", SYSinfoBuffer);
-        getProperty("os.version", "os.version", SYSinfoBuffer);
+        getProperty("os.name", "os.name", SYSinfoBuffer);   //OS이름
+        getProperty("os.version", "os.version", SYSinfoBuffer); //OS버전
 
-        getProperty("java.vendor.url", "java.vendor.url", SYSinfoBuffer);
-        getProperty("java.version", "java.version", SYSinfoBuffer);
-        getProperty("java.class.path", "java.class.path", SYSinfoBuffer);
-        getProperty("java.class.version", "java.class.version", SYSinfoBuffer);
-        getProperty("java.vendor", "java.vendor", SYSinfoBuffer);
-        getProperty("java.home", "java.home", SYSinfoBuffer);
+        getProperty("java.vendor.url", "java.vendor.url", SYSinfoBuffer);   //자바 공급자 url
+        getProperty("java.version", "java.version", SYSinfoBuffer); //자바 버전
+        getProperty("java.class.path", "java.class.path", SYSinfoBuffer);   //자바 클래스 경로
+        getProperty("java.class.version", "java.class.version", SYSinfoBuffer); //자바 클래스 버전
+        getProperty("java.vendor", "java.vendor", SYSinfoBuffer);   //자바 공급자
+        getProperty("java.home", "java.home", SYSinfoBuffer);   //자바 설치 디렉토리
 
-        getProperty("user.name", "user.name", SYSinfoBuffer);
-        getProperty("user.home", "user.home", SYSinfoBuffer);
-        getProperty("user.dir", "user.dir", SYSinfoBuffer);
+        getProperty("user.name", "user.name", SYSinfoBuffer);   //사용자 계정
+        getProperty("user.home", "user.home", SYSinfoBuffer);   //사용자 홈 디렉토리
+        getProperty("user.dir", "user.dir", SYSinfoBuffer); //현제 디렉토리
+        /*
+        os.arch os아키텍처
+        file.separator 파일구분자
+        pathline.separator 경로구분자
+        line.separator 형구분자
+         */
 
         return SYSinfoBuffer.toString();
     }
 
+    //System.getProperty() 사용
     private void getProperty(String desc, String property, StringBuffer tBuffer)
     {
         tBuffer.append(desc);//명칭
@@ -52,9 +65,9 @@ public class OSInfoActivity extends AppCompatActivity {
         tBuffer.append("\n");
     }
 
-    //OS정보
+    //OS정보, OSInfoActivity에서는 사용하지 않고 System.getProperty()를 이용한 getProperty이용 사용
     private String ReadOSinfo() {
-        ProcessBuilder cmd; //명령어 실행용도
+        ProcessBuilder cmd; //명령어 실행용
         String result = "";
 
         try {

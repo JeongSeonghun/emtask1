@@ -1,5 +1,6 @@
 package wgl.example.com.emtask1;
 //http://mainia.tistory.com/1093 참고
+//http://sunphiz.me/wp/archives/1688
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
